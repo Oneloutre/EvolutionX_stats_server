@@ -1,5 +1,7 @@
 <center>
 
+![banner](banner.png)
+
 # EvolutionX stats server.
 ### This repo contains the code used to manage the statistics of the EvolutionX ROM.
 
