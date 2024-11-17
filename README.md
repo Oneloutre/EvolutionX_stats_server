@@ -37,14 +37,11 @@ Here is the json object that should be sent in the request body:
 
 ```json
 {
-    "device_name": "OnePlus 7 Pro",
-    "device_model": "GM1917",
-    "device_brand": "OnePlus",
-    "device_codename": "guacamole",
-    "device_country": "United States",
-    "device_carrier": "T-Mobile",
-    "device_android_version": "14",
-    "device_evo_version": "9.5"
+    "device_unique_id": "AnUniqueIdRandomlyGenerated",
+    "device_codename": "Lynx",
+    "device_evo_version": "9.5",
+    "device_country": "US",
+    "device_carrier": "Verizon"
 }
 ```
 
