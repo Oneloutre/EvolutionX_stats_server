@@ -12,14 +12,11 @@ class DeviceData(Base):
     __tablename__ = "device_data"
 
     id = Column(Integer, primary_key=True, index=True)
-    device_name = Column(String(100))
-    device_model = Column(String(50))
-    device_brand = Column(String(50))
+    device_unique_id = Column(String(100))
     device_codename = Column(String(50))
-    device_country = Column(String(50))
-    device_carrier = Column(String(50))
-    device_android_version = Column(String(10))
     device_evo_version = Column(String(10))
+    device_country = Column(String(10))
+    device_carrier = Column(String(50))
     created_at = Column(DateTime, default=datetime.utcnow)
 
 

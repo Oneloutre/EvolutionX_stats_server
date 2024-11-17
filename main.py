@@ -6,6 +6,7 @@ import uvicorn
 
 from DATABASE.init_table import init_device_data_table
 from API.api import receive_data
+
 app = FastAPI()
 
 
@@ -14,23 +15,20 @@ async def read_root():
     return RedirectResponse("https://evolution-x.org")
 
 
-#@app.get("/api/global_stats")
-#async def global_stats():
-#return await api.global_stats()
+@app.get("/api/stats")
+async def global_stats():
+    return api.api_global_stats()
 
 
 class DeviceData(BaseModel):
-    device_name: str
-    device_model: str
-    device_brand: str
+    device_unique_id: str
     device_codename: str
+    device_evo_version: float
     device_country: str
     device_carrier: str
-    device_android_version: int
-    device_evo_version: float
 
 
-@app.post("/api/device_receive")
+@app.post("/api/stats")
 async def device_receive(device: DeviceData):
     return await receive_data(device)
 
