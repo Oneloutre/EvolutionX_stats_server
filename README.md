@@ -1,4 +1,4 @@
-<center>
+<div style="text-align: center;">
 
 ![banner](banner.png)
 
@@ -8,7 +8,7 @@
 
 ![fastapi](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=fff&style=plastic) ![python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=plastic) ![docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=plastic) ![postgresql](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=plastic) ![github](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=plastic)
 
-</center>
+</div>
 
 ## API Documentation
 
@@ -20,13 +20,24 @@ It will return a json object with the following keys:
 
 ```json
 {
-    "total_downloads": 1000000,
-    "total_unique_devices": 100000,
-    "total_countries": 100,
-    "total_carriers": 1000,
-    "total_users": 10000
+	"all_time_downloads": 8356439,
+	"total_unique_devices": 10000,
+	"total_devices": 100,
+	"total_countries": 100,
+	"total_carrier": 14,
+	"total_distinct_evo_versions": 14
 }
 ```
+
+- `all_time_downloads`: The total number of downloads of the EvolutionX ROM. (fetched directly from sourceforge)
+- `total_unique_devices`: The total number of people that have installed the EvolutionX ROM.
+- `total_devices`: The total number of devices that have installed the EvolutionX ROM.
+- `total_countries`: The total number of countries where the EvolutionX ROM is installed.
+- `total_carrier`: The total number of carriers on phones with the EvolutionX ROM installed.
+- `total_distinct_evo_versions`: The total number of distinct EvolutionX versions installed on devices.
+
+Difference between `total_unique_devices` and `total_devices`:
+`total_unique_devices` is the number of EvoX installations, when `total_devices` is the total of devices that received EvoX. A device is determined by its codename.
 
 ---
 
@@ -45,4 +56,26 @@ Here is the json object that should be sent in the request body:
 }
 ```
 
-An entry will be added to the database with those informations.
+An entry will be added to the database with those information.
+
+
+---
+
+## Data collected
+
+We use [Lineage's default stats APP](https://github.com/lineageos-infra/tribble-tracker) so we grab the same informations as them.
+Here the data we collect, according to their github:
+
+
+Devices check in (roughly) daily with the following data:
+
+- Device ID: The sha256 of Settings.Secure.ANDROID_ID. This ID is reset every time the device is wiped.
+- Device model, taken from ro.cm.device.
+- Device version, taken from ro.cm.version.
+- Device country, as reported by the SIM card.
+- Device carrier, as reported by the SIM card.
+
+Additionally, we record the following:
+
+- Current time the request was made.
+

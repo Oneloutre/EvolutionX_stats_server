@@ -21,7 +21,7 @@ async def create_device_data(data: DeviceData):
     device_evo_version = data.device_evo_version
     device_country = data.device_country
     device_carrier = data.device_carrier
-    try :
+    try:
         if not received_unique_id:
             reason = "device_unique_id is not provided."
             return False, reason
@@ -65,4 +65,3 @@ async def create_device_data(data: DeviceData):
         print(e)
         return False
     print(uniqueid)
-

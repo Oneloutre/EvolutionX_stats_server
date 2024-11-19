@@ -17,7 +17,13 @@ async def read_root():
 
 @app.get("/api/stats")
 async def global_stats():
-    return api.api_global_stats()
+    total_downloads, total_unique_devices, total_devices, total_countries, total_carrier, total_distinct_evo_versions = api.api_global_stats()
+    return {"all_time_downloads": total_downloads,
+            "total_unique_devices": total_unique_devices,
+            "total_devices": total_devices,
+            "total_countries": total_countries,
+            "total_carrier": total_carrier,
+            "total_distinct_evo_versions": total_distinct_evo_versions}
 
 
 class DeviceData(BaseModel):

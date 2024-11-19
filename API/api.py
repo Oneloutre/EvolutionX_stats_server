@@ -12,5 +12,5 @@ async def receive_data(device):
 
 
 def api_global_stats():
-    global_stats = retrieve_global_stats()
-    return global_stats
+    total_downloads, total_unique_devices, total_devices, total_countries, total_carrier, total_distinct_evo_versions = retrieve_global_stats()
+    return total_downloads, total_unique_devices, total_devices, total_countries, total_carrier, total_distinct_evo_versions
