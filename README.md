@@ -12,7 +12,7 @@
 
 ## API Documentation
 
-> `/api/v2/global_stats` - GET
+> `/api/stats` - GET
 
 This endpoint returns the global statistics of the EvolutionX ROM.   
 It will return a json object with the following keys:
@@ -41,7 +41,7 @@ Difference between `total_unique_devices` and `total_devices`:
 
 ---
 
-> `/api/v2/stats` - POST
+> `/api/stats` - POST
 
 A POST request to this endpoint will add a new entry to the database.  
 Here is the json object that should be sent in the request body:
@@ -58,6 +58,31 @@ Here is the json object that should be sent in the request body:
 
 An entry will be added to the database with those information.
 
+---
+### The `per-` request.
+
+> `/api/stats/per-$keyword` - GET
+
+With this endpoint, depending on what keyword is used, you can get the statistics of the EvolutionX ROM per that keyword.
+it returns a json object, ordered in the descending order of the keyword.
+Example: `/api/v2/stats/per-country` will return the country with the most installations of the ROM.
+
+```json
+{
+    "US": 1000,
+    "BR": 500,
+    "IN": 300,
+    "FR": 200,
+    "DE": 100
+}
+```
+
+here are the available keywords:
+
+- `per-device`: Returns the devices with the most installations.
+- `per-country`: Returns the countries with the most installations.
+- `per-carrier`: Returns the carriers with the most installations.
+- `per-version`: Returns the EvolutionX versions with the most installations.
 
 ---
 

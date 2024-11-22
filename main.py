@@ -39,6 +39,11 @@ async def device_receive(device: DeviceData):
     return await receive_data(device)
 
 
+@app.get("/api/stats/per-{keyword}")
+async def stats_per(keyword: str):
+    return api.stats_per(keyword)
+
+
 if __name__ == "__main__":
     init_device_data_table()
     uvicorn.run(app, host="0.0.0.0", port=8000)
