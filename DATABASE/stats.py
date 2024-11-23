@@ -65,6 +65,8 @@ def retrieve_per_keyword(keyword):
         results_returned = {}
         for codename, count in results:
             results_returned[codename] = count
+        total = sum(results_returned.values())
+        results_returned["total"] = total
         return results_returned
     except Exception as e:
         print(e)

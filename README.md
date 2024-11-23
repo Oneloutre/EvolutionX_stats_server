@@ -73,7 +73,8 @@ Example: `/api/v2/stats/per-country` will return the country with the most insta
     "BR": 500,
     "IN": 300,
     "FR": 200,
-    "DE": 100
+    "DE": 100,
+    "total": 2100
 }
 ```
 
