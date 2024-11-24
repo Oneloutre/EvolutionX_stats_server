@@ -26,6 +26,5 @@ def stats_per(keyword):
     elif keyword == "evo_version":
         results = retrieve_per_keyword("device_evo_version")
     else:
-        results = {"status": "failed",
-                "reason": "Invalid keyword."}
+        results = {"status": "failed", "reason": "Invalid keyword."}
     return results

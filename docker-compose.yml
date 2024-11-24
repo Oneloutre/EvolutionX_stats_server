@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  evox_stats_database:
+    image: postgres:17.2-alpine
+    container_name: evox_stats_database
+    environment:
+      POSTGRES_USER: user # PLEASE CHANGE ME !
+      POSTGRES_PASSWORD: password # YEAH, CHANGE ME TOO PLEASE
+      POSTGRES_DB: evox_stats_database
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - evox_stats_network
+    expose:
+      - "5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: EvoX_Stats_server
+    environment:
+      POSTGRES_USER: user # Same value as above
+      POSTGRES_PASSWORD: password # Same value as above
+      POSTGRES_HOST: evox_stats_database
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: evox_stats_database
+    networks:
+      - evox_stats_network
+    depends_on:
+      - evox_stats_database
+    ports:
+      - "8000:8000" # Expose the app on port 8000
+
+volumes:
+  postgres_data:
+
+networks:
+  evox_stats_network:
+    driver: bridge

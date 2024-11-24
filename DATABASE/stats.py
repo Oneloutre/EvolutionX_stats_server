@@ -1,11 +1,12 @@
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from DATABASE.init_table import DeviceData
+from DATABASE.database_url import get_database_url
 import requests
 from datetime import datetime
 
-# test credentials for now. Will be replaced with environment variables.
-DATABASE_URL = "postgresql://testuser:testpassword@localhost:5432/testdb"
+DATABASE_URL = get_database_url()
+
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -72,5 +73,3 @@ def retrieve_per_keyword(keyword):
         print(e)
     finally:
         db.close()
-
-retrieve_per_keyword("device_codename")

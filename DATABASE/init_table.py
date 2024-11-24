@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, inspect
 from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
+from datetime import datetime, timezone
+from DATABASE.database_url import get_database_url
 
-# test credentials for now. Will be replaced with environment variables.
-DATABASE_URL = "postgresql://testuser:testpassword@localhost:5432/testdb"
+DATABASE_URL = get_database_url()
+
 engine = create_engine(DATABASE_URL)
 Base = declarative_base()
 
@@ -17,7 +18,7 @@ class DeviceData(Base):
     device_evo_version = Column(String(10))
     device_country = Column(String(10))
     device_carrier = Column(String(50))
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
 
 
 def init_device_data_table():

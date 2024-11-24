@@ -2,9 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from DATABASE.init_table import DeviceData
+from DATABASE.database_url import get_database_url
 
-# test credentials for now. Will be replaced with environment variables.
-DATABASE_URL = "postgresql://testuser:testpassword@localhost:5432/testdb"
+DATABASE_URL = get_database_url()
 engine = create_engine(DATABASE_URL)
 Base = declarative_base()
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
